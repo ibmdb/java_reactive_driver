@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+  <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+    <file>r2dbc_db2.log</file>
+    <encoder>
+      <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+    </encoder>
+  </appender>
+  
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+    </layout>
+  </appender>
+  
+  <logger name="com.ibm.db2.r2dbc" level="OFF"/>
+  
+  <turboFilter class="ch.qos.logback.classic.turbo.MarkerFilter">
+        <Name>parsed_object_filter</Name>
+        <Marker>parsed_object</Marker>
+        <OnMatch>DENY</OnMatch>
+    </turboFilter>
+
+  <root level="OFF">
+    <!-- <appender-ref ref="STDOUT"/> -->
+    <appender-ref ref="FILE"/>  
+  </root>
+</configuration>
