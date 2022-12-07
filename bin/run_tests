@@ -2,5 +2,8 @@
 
 set -x
 
-java -cp $CLASSPATH:resources org.junit.runner.JUnitCore com.ibm.db2.r2dbc.TestSuite
+cp $INSTALL_DIR/config/* $INSTALL_DIR/classes/.
+cp $INSTALL_DIR/tests/resources/* $INSTALL_DIR/classes/.
+
+java org.junit.runner.JUnitCore com.ibm.db2.r2dbc.TestSuite
 
