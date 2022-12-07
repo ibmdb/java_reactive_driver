@@ -207,8 +207,8 @@ public class ClobSample
 	{
 		System.out.println("insertRow() called, id: "+id);
 		
-		String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-		String filepath = (rootPath + file).replace("/C:/", "/");
+		String path = Thread.currentThread().getContextClassLoader().getResource(file).getPath();
+		String filepath = path.replace("/C:/", "/"); 
 		
 		// data for DATA1 column
 		StringBuilder sb = new StringBuilder();

@@ -60,8 +60,7 @@ public abstract class BaseTestCase
 		_baselogger.debug("setup() called");
 		
 		// load db connection credentials
-		String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-		String configPath = rootPath + "config.properties";
+		String configPath = Thread.currentThread().getContextClassLoader().getResource("config.properties").getPath();
 		_config.load(new FileInputStream(configPath));	
 		
 		_database = _config.getProperty("database");

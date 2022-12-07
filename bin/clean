@@ -2,5 +2,5 @@
 
 set -x
 
-rm -f *.class *.log
+rm -f $INSTALL_DIR/classes/*.class *.log
 
