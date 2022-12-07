@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# find install dir
+# install dir
 INSTALL_DIR=`pwd`
 export INSTALL_DIR
 
@@ -31,6 +31,6 @@ done
 export R2DBC_JARS
 
 # append the jars to the  CLASSPATH
-CLASSPATH=.:$R2DBC_JARS:$DEP_JARS:$CLASSPATH
+CLASSPATH=.:$INSTALL_DIR/classes:$R2DBC_JARS:$DEP_JARS:$CLASSPATH
 export CLASSPATH
 
