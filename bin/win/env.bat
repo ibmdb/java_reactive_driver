@@ -1,8 +1,10 @@
 @echo off
 
-set path=%cd%\bin;%path%
+set INSTALL_DIR=%cd%
 
-set cp=.;%cd%
+set path=%cd%\bin\win;%path%
+
+set cp=.;%cd%;%cd%\classes
 
 :: Add all dependent jars to envvar cp
 for %%i in (lib\*.jar extlib\*.jar) do call :append %%i

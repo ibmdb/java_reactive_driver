@@ -1,3 +1,3 @@
 @echo on
 
-del io\r2dbc\db2\*.class *.log
+del %INSTALL_DIR%\*.class *.log

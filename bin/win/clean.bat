@@ -1,3 +1,3 @@
 @echo on
 
-del *.class *.log
+del %INSTALL_DIR%\*.class *.log
