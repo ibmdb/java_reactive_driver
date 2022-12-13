@@ -1,13 +1,13 @@
 # Java Reactive Database Driver for Db2
 
-This driver provides support for Java Reactive Programming using Spring Reactor. It implements R2DBC API.
+This Db2 database driver provides support for Java Reactive Programming using Spring Reactor. It implements R2DBC API.
 
 ## License
 1. You will require Db2 Connect license or JCC license to use this product.
 1. Licensing terms can be found in this link.
 
 ## Supported Features
-1. Authentication - userid/password, SSL, Kerberos.
+1. Authentication - userid/password, SSL (server authentication), Kerberos.
 1. Simple Connection and Connection Pooling.
 1. SQL Statements – CREATE, SELECT, INSERT, UPDATE, DELETE, DROP.
 1. Prepared Statement Caching.
@@ -39,7 +39,7 @@ The following pdf documents are available in this repository.
 1. Debugging Guide
 
 ## API Documentation
-Java API docs are available in the ...jar file.
+Java API docs are available in the ...jar file. Download and extract to get the html files.
 
 ## Samples
 The following samples demonstrate how this driver can be used in a Java Reactive application. 
@@ -50,7 +50,7 @@ The following samples demonstrate how this driver can be used in a Java Reactive
 Please check the installation guide on how to setup and run these samples.
 
 ## Test Suite
-This driver comes with unit tests that can be used to test the sanity of your environment. 
+This driver comes with unit tests that can be used to test the sanity of your environment. Please consult installation guide on how to setup and run these tests.
 
 ## Support
 You can get support for this product through your regular IBM support channel for Db2 drivers.
