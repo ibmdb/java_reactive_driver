@@ -4,7 +4,7 @@ This Db2 database driver provides support for Java Reactive Programming using Sp
 
 ## License
 1. You will require Db2 Connect license or JCC license to use this product.
-1. Licensing terms can be found in this link.
+1. Licensing terms can be found in this link:TBD.
 
 ## Supported Features
 1. Authentication - userid/password, SSL (server authentication), Kerberos.
@@ -27,8 +27,8 @@ This driver is available through Maven Central Repository. Use the following dep
 ```
     <dependency>
         <groupId>com.ibm.db2</groupId>
-        <artifactId>r2dbc-db2</artifactId>
-        <version>1.0.0.Final</version>
+        <artifactId>db2-r2dbc</artifactId>
+        <version>1.0.0</version>
     </dependency>
 ```
 
@@ -39,7 +39,7 @@ The following pdf documents are available in this repository.
 1. Debugging Guide
 
 ## API Documentation
-Java API docs are available in the ...jar file. Download and extract to get the html files.
+Java API docs are available in the db2-r2dbc-1.0.0-javadoc.jar file. Consult your IDE instructions to add this javadoc jar to get context sensitive help. You can also download and extract this jar to get the html files containing the API doc.
 
 ## Samples
 The following samples demonstrate how this driver can be used in a Java Reactive application. 
