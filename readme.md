@@ -1,4 +1,4 @@
-# IBM Java Reactive Driver for Db2
+# IBM Db2 Java Reactive Driver
 
 This Db2 database driver provides support for Java Reactive Programming using Spring Reactor. It implements R2DBC API.
 
