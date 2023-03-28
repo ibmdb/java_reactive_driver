@@ -8,6 +8,7 @@ mkdir lib
 :lib
 cd lib
 curl -O https://repo1.maven.org/maven2/com/ibm/db2/db2-r2dbc/%1/db2-r2dbc-%1.jar
+curl -O https://repo1.maven.org/maven2/com/ibm/db2/db2-r2dbc/%1/db2-r2dbc-%1-javadoc.jar
 cd ..
 
 if exist swidtag goto :swidtag
