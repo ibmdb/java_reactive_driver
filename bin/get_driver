@@ -1,0 +1,40 @@
+#!/bin/sh
+
+set +x
+
+usage () 
+{
+	echo "
+	Usage:
+	get_driver <version>
+		version - driver version number, example 1.1.0
+	
+	"
+}
+
+if [ -z $1 ]
+then
+	echo "	Error: Expecting version number argument"
+	usage
+	exit 1
+fi
+
+if [ ! -d "lib" ]
+then 
+	mkdir lib 
+fi 
+
+cd lib 
+curl -O https://repo1.maven.org/maven2/com/ibm/db2/db2-r2dbc/$1/db2-r2dbc-$1.jar
+cd ..
+
+if [ ! -d "swidtag" ]
+then 
+	mkdir swidtag
+fi 
+
+cd swidtag
+curl -O https://repo1.maven.org/maven2/com/ibm/db2/db2-r2dbc/$1/ibm.com_IBM_Db2_Java_Reactive_Driver-$1.swidtag
+cd ..
+
+exit 0
