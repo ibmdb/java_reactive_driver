@@ -2,20 +2,141 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>r2dbc_db2</groupId>
-	<artifactId>r2dbc_db2</artifactId>
+	<groupId>com.ibm.db2</groupId>
+	<artifactId>db2-r2dbc</artifactId>
 	<version>1.1.0</version>
 	<packaging>jar</packaging>
+
+	<name>IBM Db2 Java Reactive Driver</name>
+	<description>A new database driver that was developed for use by Java Reactive Applications using Java Spring Project Reactor.</description>
+	<url>https://github.com/ibmdb/java_reactive_driver</url>
+	<licenses>
+		<license>
+			<name>International Program License Agreement (IPLA)</name>
+			<url>https://www.ibm.com/support/customer/csol/terms/?ref=L-KHAI-CASRX7-01-10-2022-zz-en</url>
+			<distribution>repo</distribution>
+			<comments>For documentation, samples and tests please refer the GitHub repository https://github.com/ibmdb/java_reactive_driver </comments>
+		</license>
+	</licenses>
 
 	<properties>
 		<java.version>1.8</java.version>
 		<r2dbc-spi.version>0.8.1.RELEASE</r2dbc-spi.version>
-		<reactor.version>Dysprosium-SR2</reactor.version>
-		<logback.version>1.2.3</logback.version>
-		<slf4j.version>1.7.26</slf4j.version>
-		<logback.version>1.2.3</logback.version>
-		<junit.version>5.4.2</junit.version>
+		<reactor.version>2020.0.9</reactor.version>
+		<slf4j.version>2.0.4</slf4j.version>
+		<logback.version>1.3.5</logback.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<timestamp>${maven.build.timestamp}</timestamp>
+		<maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
 	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.0</version>
+				<configuration>
+					<compilerArgs>
+						<arg>-Xlint:all</arg>
+						<arg>-Xlint:-options</arg>
+						<arg>-Xlint:-processing</arg>
+						<arg>-Xlint:-serial</arg>
+					</compilerArgs>
+					<showWarnings>true</showWarnings>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.8.2</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.0.1</version>
+				<configuration>
+					<excludePackageNames>
+						com.ibm.db2.r2dbc.types,com.ibm.db2.r2dbc.drda,com.ibm.db2.r2dbc.endpoint,com.ibm.db2.r2dbc.resources,com.ibm.db2.r2dbc.util
+					</excludePackageNames>
+					<links>
+						<link>https://r2dbc.io/spec/${r2dbc-spi.version}/api/</link>
+						<link>https://projectreactor.io/docs/core/release/api/</link>
+						<link>https://www.reactive-streams.org/reactive-streams-1.0.3-javadoc/</link>
+					</links>
+					<detectLinks>true</detectLinks>
+					<isOffline>false</isOffline>
+					<show>public</show>
+				</configuration>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.0.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.22.1</version>
+				<configuration>
+					<includes>
+						<include>**/*Tests.java</include>
+						<include>*Tests.java</include>
+						<include>*Test.java</include>
+					</includes>
+					<excludes>
+						<exclude>*Suite*</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.22.1</version>
+			</plugin>
+		</plugins>
+		<resources>
+			<resource>
+				<directory>${project.basedir}</directory>
+				<includes>
+					<include>LICENSE</include>
+					<include>NOTICE</include>
+				</includes>
+				<targetPath>META-INF</targetPath>
+			</resource>
+			<resource>
+				<directory>${project.basedir}/src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+	</build>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>3.0.0-M5</version>
+			</plugin>
+		</plugins>
+	</reporting>
 
 	<dependencyManagement>
 		<dependencies>
@@ -28,7 +149,7 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>io.r2dbc</groupId>
@@ -36,42 +157,37 @@
 			<version>${r2dbc-spi.version}</version>
 		</dependency>
 		<dependency>
-            <groupId>io.projectreactor</groupId>
-            <artifactId>reactor-core</artifactId>
-        </dependency>
-        <dependency>
-	        <groupId>io.projectreactor</groupId>
-	        <artifactId>reactor-test</artifactId>
-	        <scope>test</scope>
-	    </dependency>
-        <dependency>
-            <groupId>io.projectreactor.netty</groupId>
-            <artifactId>reactor-netty</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>        
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-			<groupId>javax.xml.bind</groupId>
-			<artifactId>jaxb-api</artifactId>
-			<version>2.3.0</version>
-		</dependency> 
-        <dependency>
-        	<groupId>junit</groupId>
-        	<artifactId>junit</artifactId>
-        	<version>4.11</version>
-        	<scope>test</scope>
-        </dependency>	    
+			<groupId>io.projectreactor</groupId>
+			<artifactId>reactor-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.projectreactor</groupId>
+			<artifactId>reactor-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.projectreactor.netty</groupId>
+			<artifactId>reactor-netty</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13.2</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
-	
+
 	<repositories>
 		<repository>
 			<id>spring-milestones</id>
@@ -90,5 +206,5 @@
 			</snapshots>
 		</repository>
 	</repositories>
-	
+
 </project>
