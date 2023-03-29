@@ -121,7 +121,7 @@ public class NamedParameterMarkerTests extends BaseTestCase
 		Mono<DB2Result> mono = _pool.getConnection()
 									.doOnNext(c -> con.set(c))
 									.flatMap(c -> c.createStatement("INSERT INTO UNIT_TEST_"+_randomInt+" VALUES (:id, :name, :height)")
-											       .bind("id", 1)
+											       .bind("id", 2)
 											       .bind("name",  "John")
 											       .bind("height",  height)
 												   .execute());
@@ -138,7 +138,7 @@ public class NamedParameterMarkerTests extends BaseTestCase
 		// Query the inserted data and then release the connection
 		Flux<Row> flux = Mono.just(con.get())
 							 .flatMap(c -> c.createStatement("SELECT ID, NAME, HEIGHT FROM UNIT_TEST_"+_randomInt+" WHERE ID = :id AND ID = :id AND NAME = :name AND HEIGHT = :height")
-									 	     .bind("id", 1) // this id should be bound for two positions 
+									 	     .bind("id", 2) // this id should be bound for two positions 
 									         .bind("name", "John")
 									         .bind("height", height)
 											 .execute())
@@ -150,7 +150,7 @@ public class NamedParameterMarkerTests extends BaseTestCase
 					.assertNext(row -> {
 					 	assert row != null : "Received a null object";
 					 	assert row instanceof Row : "Did not receive a Row object";
-					 	assert row.get("ID", Integer.class) == 1 : "Expected value is 1, but received = "+row.get("ID");
+					 	assert row.get("ID", Integer.class) == 2 : "Expected value is 1, but received = "+row.get("ID");
 					 	assert row.get("NAME", String.class).equals("John"): "Expected value is John, but received = "+row.get("NAME");
 					 	assert row.get("HEIGHT", BigDecimal.class).equals(height): "Expected value is 165.5, but received = "+row.get("HEIGHT");
 					})
@@ -174,10 +174,11 @@ public class NamedParameterMarkerTests extends BaseTestCase
 		Mono<DB2Result> mono = _pool.getConnection()
 									.doOnNext(c -> con.set(c))
 									.flatMap(c -> c.createStatement("INSERT INTO UNIT_TEST_"+_randomInt+" VALUES (:id, ?, :height)")
-											       .bind("id", 1)
+											       .bind("id", 3)
 											       .bind(2,  "John")
 											       .bind("height",  height)
-												   .execute());
+												   .execute())
+									.doAfterTerminate(() -> con.get().release());
 		// Test
 		StepVerifier.create(mono)
 		            .expectError()
@@ -200,10 +201,11 @@ public class NamedParameterMarkerTests extends BaseTestCase
 		Mono<DB2Result> mono = _pool.getConnection()
 									.doOnNext(c -> con.set(c))
 									.flatMap(c -> c.createStatement("INSERT INTO UNIT_TEST_"+_randomInt+" VALUES (:_id, :name, :height)")
-											       .bind("_id", 1) 
+											       .bind("_id", 4) 
 											       .bind("abcd",  "John") // unknown param name, should cause error
 											       .bind("height",  height)
-												   .execute());
+												   .execute())
+									.doAfterTerminate(() -> con.get().release());
 		// Test
 		StepVerifier.create(mono)
 		            .expectError()
@@ -226,10 +228,11 @@ public class NamedParameterMarkerTests extends BaseTestCase
 		Mono<DB2Result> mono = _pool.getConnection()
 									.doOnNext(c -> con.set(c))
 									.flatMap(c -> c.createStatement("INSERT INTO UNIT_TEST_"+_randomInt+" VALUES (:1id, :name&co, :height)")
-											       .bind("1id", 1) 
+											       .bind("1id", 5) 
 											       .bind("name&co",  "John") // ill-formed name '&' not allowed
 											       .bind("height",  height)
-												   .execute());
+												   .execute())
+									.doAfterTerminate(() -> con.get().release());
 		// Test
 		StepVerifier.create(mono)
 		            .expectError()
