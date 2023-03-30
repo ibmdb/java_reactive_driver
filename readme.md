@@ -1,4 +1,4 @@
-# Java Reactive Database Driver for Db2
+# IBM Db2 Java Reactive Driver
 
 This Db2 database driver provides support for Java Reactive Programming using Spring Reactor. It implements R2DBC API.
 
@@ -28,7 +28,7 @@ This driver is available through Maven Central Repository. Use the following dep
     <dependency>
         <groupId>com.ibm.db2</groupId>
         <artifactId>db2-r2dbc</artifactId>
-        <version>1.0.0</version>
+        <version>1.1.0</version>
     </dependency>
 ```
 
