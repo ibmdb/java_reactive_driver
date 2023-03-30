@@ -39,7 +39,7 @@ The following pdf documents are available in this repository.
 1. Debugging Guide
 
 ## API Documentation
-Java API docs are available in the db2-r2dbc-1.0.0-javadoc.jar file. Consult your IDE instructions to add this javadoc jar to get context sensitive help. You can also download and extract this jar to get the html files containing the API doc.
+Java API docs are available in the db2-r2dbc-1.1.0-javadoc.jar file. Consult your IDE instructions to add this javadoc jar to get context sensitive help. You can also download and extract this jar to get the html files containing the API doc.
 
 ## Samples
 The following samples demonstrate how this driver can be used in a Java Reactive application. 
