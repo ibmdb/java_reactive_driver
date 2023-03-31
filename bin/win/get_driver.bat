@@ -18,7 +18,10 @@ mkdir swidtag
 
 :swidtag
 cd swidtag
-curl -O %MAVEN_REPO%/com/ibm/db2/db2-r2dbc/%1/ibm.com_IBM_Db2_Java_Reactive_Driver-%1.swidtag
+curl -O %MAVEN_REPO%/com/ibm/db2/db2-r2dbc/%1/db2-r2dbc-%1-swidtag.jar
+jar xvf db2-r2dbc-%1-swidtag.jar
+rmdir /S /Q META-INF
+del db2-r2dbc-%1-swidtag.jar
 cd ..
 
 goto done
