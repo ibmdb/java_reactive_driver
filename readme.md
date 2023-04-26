@@ -53,5 +53,5 @@ Please check the installation guide on how to setup and run these samples.
 This driver comes with unit tests that can be used to test the sanity of your environment. Please consult installation guide on how to setup and run these tests.
 
 ## Support
-You can get support for this product through your regular IBM support channel for Db2 drivers.
+You can get support for this product through your regular IBM support channel for Db2 drivers. You can also use the issues section in this repository.
 
