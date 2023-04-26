@@ -33,7 +33,7 @@ This driver is available through Maven Central Repository. Use the following dep
 ```
 
 ## Documentation
-The following pdf documents are available in this repository.
+The following pdf documents are available in this repository. Please check the docs folder.
 1. Installation Guide
 1. Developer Guide
 1. Debugging Guide
