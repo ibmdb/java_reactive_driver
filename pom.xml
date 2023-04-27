@@ -8,14 +8,14 @@
 	<packaging>jar</packaging>
 
 	<name>IBM Db2 Java Reactive Driver</name>
-	<description>A new database driver that was developed for use by Java Reactive Applications using Java Spring Project Reactor.</description>
+	<description>A new database driver that was developed for use by Java Reactive Applications using Java Spring Project Reactor. For documentation, samples and tests please refer the GitHub repository https://github.com/ibmdb/java_reactive_driver</description>
 	<url>https://github.com/ibmdb/java_reactive_driver</url>
 	<licenses>
 		<license>
 			<name>International Program License Agreement (IPLA)</name>
-			<url>https://www.ibm.com/support/customer/csol/terms/?ref=L-KHAI-CASRX7-01-10-2022-zz-en</url>
+			<url>https://www.ibm.com/terms/?id=L-TGGQ-CSZLVM</url>
 			<distribution>repo</distribution>
-			<comments>For documentation, samples and tests please refer the GitHub repository https://github.com/ibmdb/java_reactive_driver </comments>
+			<comments>Refer to license folder in the db2-r2dbc-1.1.0.jar file for Notices and License Information.</comments>
 		</license>
 	</licenses>
 

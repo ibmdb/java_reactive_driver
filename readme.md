@@ -4,7 +4,7 @@ This Db2 database driver provides support for Java Reactive Programming using Sp
 
 ## License
 1. You will require Db2 Connect license or JCC license to use this product.
-1. Licensing terms can be found in this link:TBD.
+1. Licensing terms can be found in this [link](https://www.ibm.com/terms/?id=L-TGGQ-CSZLVM). Refer to license folder in the db2-r2dbc-1.1.0.jar file for Notices and License Information.
 
 ## Supported Features
 1. Authentication - userid/password, SSL (server authentication), Kerberos.
