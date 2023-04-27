@@ -33,7 +33,7 @@ This driver is available through Maven Central Repository. Use the following dep
 ```
 
 ## Documentation
-The following pdf documents are available in this repository.
+The following pdf documents are available in this repository. Please check the docs folder.
 1. Installation Guide
 1. Developer Guide
 1. Debugging Guide
@@ -53,5 +53,5 @@ Please check the installation guide on how to setup and run these samples.
 This driver comes with unit tests that can be used to test the sanity of your environment. Please consult installation guide on how to setup and run these tests.
 
 ## Support
-You can get support for this product through your regular IBM support channel for Db2 drivers.
+You can get support for this product through your regular IBM support channel for Db2 drivers. You can also use the issues section in this repository.
 
