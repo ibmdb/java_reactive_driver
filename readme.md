@@ -16,8 +16,8 @@ This Db2 database driver provides support for Java Reactive Programming using Sp
 1. Support for Data Transformations for parameter and result set data.
 
 ## Supported Platforms
-1. DB2 on z/OS
-1. DB2 on LUW
+1. Db2 on z/OS
+1. Db2 on LUW
 
 Note: We do not have support for iSeries yet.
 
