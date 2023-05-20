@@ -63,14 +63,14 @@ public abstract class BaseTestCase
 		String configPath = Thread.currentThread().getContextClassLoader().getResource("config.properties").getPath();
 		_config.load(new FileInputStream(configPath));	
 		
-		_database = _config.getProperty("database");
-		_host = _config.getProperty("host");
-		_port = Integer.parseInt(_config.getProperty("port"));
-		_userid = _config.getProperty("userid");
-		_password = _config.getProperty("password");
+		_database = _config.getProperty("database").trim();
+		_host = _config.getProperty("host").trim();
+		_port = Integer.parseInt(_config.getProperty("port").trim());
+		_userid = _config.getProperty("userid").trim();
+		_password = _config.getProperty("password").trim();
 	
 		String value = _config.getProperty("keepDynamic");
-		if (value != null && value.equalsIgnoreCase("true")) {
+		if (value != null && value.trim().equalsIgnoreCase("true")) {
 			_keepDynamic = true;
 		} else {
 			_keepDynamic = false;
@@ -80,18 +80,18 @@ public abstract class BaseTestCase
 		if (value == null) {
 			_conPoolSize = 10;
 		} else {
-			_conPoolSize = Integer.parseInt(value);
+			_conPoolSize = Integer.parseInt(value.trim());
 		}
 		
 		value = _config.getProperty("stmtCacheSize");
 		if (value == null) {
 			_stmtCacheSize = 10;
 		} else {
-			_stmtCacheSize = Integer.parseInt(value);
+			_stmtCacheSize = Integer.parseInt(value.trim());
 		}
 		
 		value = _config.getProperty("securityMechanism");
-		if ((value != null) && (value.equalsIgnoreCase("Kerberos"))) {
+		if ((value != null) && (value.trim().equalsIgnoreCase("Kerberos"))) {
 			_securityMechanism = DB2ConnectionConfiguration.KERBEROS_SECURITY;
 		} else {
 			// defaults to DB2ConnectionConfiguration.USERID_PASSWORD
@@ -101,27 +101,27 @@ public abstract class BaseTestCase
 		
 		// SSL
 		value = _config.getProperty("enableSSL");
-		if (value != null && value.equalsIgnoreCase("true")) {
+		if (value != null && value.trim().equalsIgnoreCase("true")) {
 			_enableSSL = true;
 		} else {
 			_enableSSL = false;
 		}
 		value = _config.getProperty("trustStorePath");
 		if (value != null) {
-			_trustStorePath = value;
+			_trustStorePath = value.trim();
 		}
 		value = _config.getProperty("trustStorePassword");
 		if (value != null) {
-			_trustStorePassword = value;
+			_trustStorePassword = value.trim();
 		}
 				
 		value = _config.getProperty("licenseFile");
 		if (value != null) {
-			_licenseFilePath = value;
+			_licenseFilePath = value.trim();
 		}
 		
 		value = _config.getProperty("type");
-		if (value != null && value.equalsIgnoreCase("LUW")) {
+		if (value != null && value.trim().equalsIgnoreCase("LUW")) {
 			_isLUW = true;
 		} else {
 			_isLUW = false;
