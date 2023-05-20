@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -x
+
+cp $INSTALL_DIR/config/* $INSTALL_DIR/classes/.
+cp $INSTALL_DIR/tests/resources/* $INSTALL_DIR/classes/.
+
+java com.ibm.db2.r2dbc.RunTest
+
