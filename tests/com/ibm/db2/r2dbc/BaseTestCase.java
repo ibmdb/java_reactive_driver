@@ -63,11 +63,44 @@ public abstract class BaseTestCase
 		String configPath = Thread.currentThread().getContextClassLoader().getResource("config.properties").getPath();
 		_config.load(new FileInputStream(configPath));	
 		
-		_database = _config.getProperty("database").trim();
-		_host = _config.getProperty("host").trim();
+		_database = System.getenv("DB2_DATABASE");
+		
+		if(_database == null || _database.length() < 1 ) {
+			_baselogger.error("Environment variable DB2_DATABASE  not set. Please set it before running test file.");
+		}
+		
+		_host = System.getenv("DB2_HOST");
+		if(_host == null || _host.length() <1) {
+			_baselogger.error("Environment variable DB2_HOST  not set. Please set it before running test file.");
+		}
+		
+		String prt = System.getenv("DB2_PORT");
+		if(prt == null || prt.length() < 1) {
+			_baselogger.error("Environment variable DB2_PORT  not set. Please set it before running test file.");
+		}
+		_port = Integer.parseInt(prt);
+		
+		
+		_userid = System.getenv("DB2_USERID");
+		if(_userid == null || _userid.length() <1) {
+			_baselogger.error("Environment variable DB2_USERID  not set. Please set it before running test file.");
+		}
+		if(_userid == null || _userid.length() < 1) {
+			
+		}
+		
+		_password = System.getenv("DB2_PASSWORD");
+		if(_password == null || _password.length() <1) {
+			_baselogger.error("Environment variable DB2_PASSWORD  not set. Please set it before running test file.");
+		}
+		
+		/*
+	
+ 		_host = _config.getProperty("host").trim();
 		_port = Integer.parseInt(_config.getProperty("port").trim());
 		_userid = _config.getProperty("userid").trim();
 		_password = _config.getProperty("password").trim();
+		*/
 	
 		String value = _config.getProperty("keepDynamic");
 		if (value != null && value.trim().equalsIgnoreCase("true")) {
